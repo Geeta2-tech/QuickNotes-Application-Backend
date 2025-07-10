@@ -9,7 +9,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 const connectToDatabase = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ alter: true }); // Sync models with the database
+    await sequelize.sync({ alter: false }); // Sync models with the database
     // force: false means it won't drop existing tables, but will create them if they don't exist
     // If you want to drop and recreate tables, set force: true (use with caution)  
     console.log('Database connection has been established successfully.');

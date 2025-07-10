@@ -11,14 +11,14 @@ const Note = sequelize.define('Note', {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  UserId: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
+  
   color: {
     type: DataTypes.STRING,
     allowNull: true,
-    defaultValue: '#FFD700' // default card color (gold/yellow)
+    defaultValue: '#FFD700', // default card color (gold/yellow)
+    validate: {
+      is: /^#([0-9A-Fa-f]{3}){1,2}$/ // validates hex code like #FFF or #FFFFFF
+    }
   }
 })
 

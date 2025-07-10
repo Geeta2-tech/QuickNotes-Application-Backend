@@ -1,8 +1,11 @@
 const dotenv = require('dotenv');
 const app = require('./src/app');
 
+
 // Load environment variables from .env file
 dotenv.config()
+
+// Enable CORS for all routes
 
 // port configuration
 const PORT = process.env.PORT || 3000;
