@@ -4,52 +4,52 @@ module.exports = {
   // Create a new note
   createNote: async (req, res) => {
     try {
-      const userId = req.user.id;
+      const userId = req.user.id; // Get userId from the token
       const note = await noteService.createNote({ ...req.body, userId });
-      res.status(201).json(note);
+      res.status(201).json(note); // Return created note
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message }); // Return error message
     }
   },
 
   // Get all notes by user ID (from token)
   getNotesByUserId: async (req, res) => {
     try {
-      const userId = req.user.id;
+      const userId = req.user.id; // Get userId from the token
       const notes = await noteService.getNotesByUserId(userId);
-      res.status(200).json(notes);
+      res.status(200).json(notes); // Return all notes
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message }); // Return error message
     }
   },
 
   // Update a note by ID
   updateNoteById: async (req, res) => {
     try {
-      const userId = req.user.id;
-      const note = await noteService.updateNoteById( req.query.id, req.body, userId);
+      const userId = req.user.id; // Get userId from the token
+      const note = await noteService.updateNoteById(req.query.id, req.body, userId);
       if (note) {
-        res.status(200).json(note);
+        res.status(200).json(note); // Return updated note
       } else {
-        res.status(404).json({ message: 'Note not found or unauthorized' });
+        res.status(404).json({ message: 'Note not found or unauthorized' }); // If note not found
       }
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message }); // Return error message
     }
   },
 
   // Delete a note by ID
   deleteNoteById: async (req, res) => {
     try {
-      const userId = req.user.id;
+      const userId = req.user.id; // Get userId from the token
       const result = await noteService.deleteNoteById(req.query.id, userId);
       if (result) {
-        res.status(200).json({ message: 'Note deleted successfully' });
+        res.status(200).json({ message: 'Note deleted successfully' }); // Return success message
       } else {
-        res.status(404).json({ message: 'Note not found or unauthorized' });
+        res.status(404).json({ message: 'Note not found or unauthorized' }); // If note not found
       }
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message }); // Return error message
     }
   }
 };

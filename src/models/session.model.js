@@ -10,7 +10,7 @@ const Session = sequelize.define('Session', {
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false
-  },
+  }
 }, {
   timestamps: false, // Disable createdAt and updatedAt fields
 });

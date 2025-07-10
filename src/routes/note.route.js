@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const noteController = require('../controller/note.controller');
 const authenticateToken = require('../middleware/auth.middleware');
-console.log("authenticateToken", authenticateToken);
-
 
 // Protect all note routes
 router.post('/create', authenticateToken, noteController.createNote);
