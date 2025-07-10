@@ -1,14 +1,13 @@
 const router = require('express').Router();
 const noteController = require('../controller/note.controller');
+const authenticateToken = require('../middleware/auth.middleware');
+console.log("authenticateToken", authenticateToken);
 
 
-// Create a new note
-router.post('/', noteController.createNote);        
-// Get all notes by user ID
-router.get('/user/:userId', noteController.getNotesByUserId);
-// update a note by ID
-router.put('/:id', noteController.updateNoteById);
-// delete a note by ID
-router.delete('/:id', noteController.deleteNoteById);   
+// Protect all note routes
+router.post('/create', authenticateToken, noteController.createNote);
+router.get('/get-all-by-uid', authenticateToken, noteController.getNotesByUserId);
+router.put('/update', authenticateToken, noteController.updateNoteById);
+router.delete('/delete', authenticateToken, noteController.deleteNoteById);
 
 module.exports = router;
