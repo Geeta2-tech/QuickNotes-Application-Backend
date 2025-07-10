@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const router = require('./routes')
 
-app.use(express.json());
+// Middleware to parse JSON bodies
+app.use(express.json()); // <-- This must come before app.use('/api', router)
+
 // connect to the database
 const {connectToDatabase} = require('./config/db');
 

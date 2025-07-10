@@ -14,7 +14,7 @@ module.exports = {
   },    
 //  Login a user
     loginUser: async (userData) => {
-        const user = await User.findOne({ email: userData.email });
+        const user = await User.findOne({ where: { email: userData.email} });
         if (user && await bcrypt.compare(userData.password, user.password)) {
             return user;
         }
